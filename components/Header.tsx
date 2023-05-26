@@ -1,9 +1,20 @@
 import { SearchIcon, BellIcon } from "@heroicons/react/outline";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      window.scrollY > 0 ? setIsScrolled(true) : setIsScrolled(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Clean up function
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <header>
+    <header className={`${isScrolled && "bg-[#141414]"}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
         <img
           src="https://rb.gy/ulxxee"
