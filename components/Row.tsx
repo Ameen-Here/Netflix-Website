@@ -27,6 +27,12 @@ const Row = ({ title, movies }: Props) => {
         left: scrollTo,
         behavior: "smooth",
       });
+
+      console.log(scrollTo);
+
+      if (scrollTo <= 0) {
+        setIsMoved(false);
+      }
     }
   };
   return (
