@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     await signOut(auth)
       .then(() => {
         setUser(null);
-        router.push("/");
+        router.push("/login");
         setLoading(false);
       })
       .catch((error) => {

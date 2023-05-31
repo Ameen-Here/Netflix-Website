@@ -2,6 +2,7 @@ import { signInWithPopup } from "firebase/auth";
 import Head from "next/head";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 
 interface Inputs {
   email: string;
@@ -11,17 +12,19 @@ interface Inputs {
 const login = () => {
   const [login, setLogin] = useState(true);
 
+  const { signin, signup } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
-      // await signin(email, password)
+      await signin(email, password);
     } else {
-      // await signup(email, password)
+      await signup(email, password);
     }
   };
 
