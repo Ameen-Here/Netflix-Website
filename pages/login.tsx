@@ -9,7 +9,7 @@ interface Inputs {
   password: string;
 }
 
-const login = () => {
+const Login = () => {
   const [login, setLogin] = useState(true);
 
   const { signin, signup } = useAuth();
@@ -100,4 +100,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
