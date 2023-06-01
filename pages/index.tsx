@@ -35,11 +35,10 @@ const Home = ({
 }: Props) => {
   const showModal = useRecoilValue(modalState);
   const { loading, user } = useAuth();
+  const list = useList(user?.uid);
   if (loading) {
     return null;
   }
-
-  const list = useList(user?.uid);
 
   return (
     <div className="relative h-screen  bg-gradient-to-b lg:h-[140vh]">
