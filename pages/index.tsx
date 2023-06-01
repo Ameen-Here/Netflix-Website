@@ -10,6 +10,7 @@ import useAuth from "../hooks/useAuth";
 import { useRecoilValue } from "recoil";
 import { modalState } from "../atoms/modalAtom";
 import Modal from "../components/Modal";
+import useList from "../hooks/useList";
 
 interface Props {
   netflixOriginals: Movie[];
@@ -33,10 +34,12 @@ const Home = ({
   documentaries,
 }: Props) => {
   const showModal = useRecoilValue(modalState);
-  const { loading } = useAuth();
+  const { loading, user } = useAuth();
   if (loading) {
     return null;
   }
+
+  const list = useList(user?.uid);
 
   return (
     <div className="relative h-screen  bg-gradient-to-b lg:h-[140vh]">
@@ -53,6 +56,7 @@ const Home = ({
           <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
+          {list.length > 0 && <Row title="My List" movies={list} />}
 
           <Row title="Comedies" movies={comedyMovies} />
           <Row title="Scary Movies" movies={horrorMovies} />
